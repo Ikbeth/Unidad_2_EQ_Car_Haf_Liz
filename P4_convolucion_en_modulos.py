@@ -55,24 +55,6 @@ def plotImages(imgOrginal, imgConvolucionada):
 
     plt.show()
 
-def maxPooling(stride, img_array, largo, alto):
-    img_max_pooling = []
-    for filas in range(1, alto - 1, stride):
-        new_fila = []
-        for columnas in range(1, largo - 1, stride):
-            max_pixel = -1
-            for f_kernel in range(stride):
-                for c_kernel in range(stride):
-                    pixel = img_array[filas + f_kernel][columnas + c_kernel]
-                    if pixel > max_pixel:
-                        max_pixel = pixel
-            new_fila.append(float(max_pixel))
-        img_max_pooling.append(new_fila)
-
-    # img = array_to_img(img_max_pooling)
-
-    return img_max_pooling
-
 
 file = './Gato.jpg'
 # file = './FIT V.jpg'
@@ -87,14 +69,3 @@ if not img is None:
     print(img.size)
 
     plotImages(img_array, img_conv)
-
-
-img_mp = maxPooling(2, img_conv, 498, 498)
-# print(img_mp)
-# img = array_to_img(img_mp)
-# if not img is None:
-#     print(img.size)
-
-plotImages(img_array, img_mp)
-
-save_img('mp.jpg', img_to_array(img_mp))
